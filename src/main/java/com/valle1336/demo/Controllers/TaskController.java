@@ -37,5 +37,9 @@ public class TaskController {
         taskEntity.setCreationDate(LocalDateTime.now());
         return taskRepository.save(taskEntity);
     }
-
+    @PostMapping("/prioritize")
+    public TaskEntity prioritizeTask(@RequestBody TaskEntity taskEntity) {
+        taskEntity.setPrioritize(true);
+        return taskRepository.save(taskEntity);
+    }
 }
