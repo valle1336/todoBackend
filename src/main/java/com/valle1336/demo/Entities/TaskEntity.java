@@ -15,14 +15,17 @@ public class TaskEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String task;
+    private String taskTitle;
+    private String taskDescription;
     private boolean completed;
     private boolean prioritize;
     private LocalDateTime creationDate;
 
-    public TaskEntity(Long id, String task, boolean completed, boolean prioritize) {
+    public TaskEntity(Long id, boolean completed, boolean prioritize, LocalDateTime creationDate, String taskTitle, String taskDescription) {
         this.id = id;
-        this.task = task;
+        this.taskTitle = taskTitle;
+        this.taskDescription = taskDescription;
+        this.creationDate = creationDate;
         this.completed = completed;
         this.prioritize = prioritize;
     }
