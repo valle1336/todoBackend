@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
 @Table(name = "tasks")
-public class TodoEntity {
+public class TaskEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,15 +18,16 @@ public class TodoEntity {
     private String task;
     private boolean completed;
     private boolean prioritize;
+    private LocalDateTime creationDate;
 
-    public TodoEntity(Long id, String task, boolean completed, boolean prioritize) {
+    public TaskEntity(Long id, String task, boolean completed, boolean prioritize) {
         this.id = id;
         this.task = task;
         this.completed = completed;
         this.prioritize = prioritize;
     }
 
-    public TodoEntity() {
+    public TaskEntity() {
 
     }
 }
