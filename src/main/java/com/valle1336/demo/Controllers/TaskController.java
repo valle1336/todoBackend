@@ -3,7 +3,9 @@ package com.valle1336.demo.Controllers;
 import com.valle1336.demo.Entities.TaskEntity;
 import com.valle1336.demo.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.config.Task;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 
 import java.time.LocalDateTime;
 
@@ -41,5 +43,12 @@ public class TaskController {
     public TaskEntity prioritizeTask(@RequestBody TaskEntity taskEntity) {
         taskEntity.setPrioritize(true);
         return taskRepository.save(taskEntity);
+    }
+    @PutMapping("/edit")
+    public TaskEntity editTask(@PathVariable Long id, @RequestBody TaskEntity updatedTaskEntity) {
+        TaskEntity task = taskRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Task not found with id" + id));
+        task.setTaskTitle(updatedTaskEntity.getTaskTitle());
+        task.setTaskDescription(updatedTaskEntity.getTaskDescription());
+        return taskRepository.save(task);
     }
 }
