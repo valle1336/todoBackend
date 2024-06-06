@@ -14,6 +14,6 @@ public class TaskController {
     }
     @GetMapping("/secure")
     String secure() {
-        return "Hello from Secure endpoint";
+        return "Hello from Secure endpoint!";
     }
 }
